@@ -7,12 +7,12 @@ import ThemeToggle from '../ThemeToggle';
 import AuthContext from '../../context/AuthContext'
 
 const Navbar = () => {
-    const [removeMenu, setShowMenu] = useState('nav__menu')
+    const [removeMenu, setShowMenu] = useState('remove-menu')
     const toggleRemoveMenu = () => {
-        setShowMenu((curr) => (curr === "nav__menu" ? "remove-menu" : "nav__menu"))
+        setShowMenu((curr) => (curr === "nav__menu" && "remove-menu"))
     }
     const toggleShowMenu = () => {
-        setShowMenu((curr) => (curr === "remove-menu" ? "" : "remove-menu"))
+        setShowMenu((curr) => (curr === "remove-menu" && "nav__menu"))
     }
 
     let { user, logoutUser } = useContext(AuthContext)
