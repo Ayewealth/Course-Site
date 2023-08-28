@@ -1,0 +1,71 @@
+/* ====================== Choice ======================= */
+.choices {
+  position: fixed;
+  background: linear-gradient(
+      201deg,
+      rgba(178, 178, 178, 0.65) 0%,
+      rgba(170, 170, 170, 0) 100%
+    ),
+    url(../../assets/concentrated-mixed-race-woman-with-black-curly-hair-being-her-workplace.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.choice {
+  display: grid;
+  align-items: center;
+  grid-template-rows: 1fr 2fr 1fr;
+  height: 100vh;
+  gap: 8rem;
+  padding: 8vw 8vw 4vw;
+}
+
+.choice__btns {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.choice__btns a button {
+  padding: 1.5rem 2rem;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-medium);
+  background: linear-gradient(to right, #343461 50%, #7272be 50%);
+  color: #fff;
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: all 0.5s ease-out;
+  cursor: pointer;
+}
+.choice__btns a {
+  color: #fff;
+}
+
+.choice__btns button:hover {
+  background-position: left bottom;
+  color: #fff;
+}
+
+#link a {
+  color: #7272be;
+  font-weight: var(--font-medium);
+}
+
+#goal {
+  color: #7272be;
+  font-weight: var(--font-semi-bold);
+  font-size: var(--small-font-size);
+}
+
+@media screen and (max-width: 426px) {
+  .choice__btns button {
+    padding: 1rem;
+  }
+}

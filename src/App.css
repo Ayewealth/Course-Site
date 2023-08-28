@@ -1,0 +1,183 @@
+/*==================== BASE ====================*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+  color: var(--text-color);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/*==================== LAYOUT ====================*/
+.container {
+  max-width: 768px;
+  margin-left: var(--mb-3);
+  margin-right: var(--mb-3);
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.header {
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  z-index: var(--z-fixed);
+  background-color: var(--body-color);
+}
+
+/*==================== REUSABLE CSS CLASSES ====================*/
+.section {
+  padding: 2rem 0 4rem;
+}
+
+.section__title {
+  font-size: var(--h1-font-size);
+  color: var(--title-color);
+}
+
+.section__subtitle {
+  display: block;
+  font-size: var(--small-font-size);
+  margin-bottom: var(--mb-3);
+}
+
+.section__title,
+.section__subtitle {
+  text-align: center;
+}
+
+/* Change background header */
+.scroll-header {
+  box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.15);
+}
+
+/*========== SCROLL BAR ==========*/
+::-webkit-scrollbar {
+  width: 0.6rem;
+  background-color: var(--scroll-bar-color);
+  border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-thumb-color);
+  border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--text-color-light);
+}
+
+@media screen and (max-width: 767px) {
+  .nav__menu {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    background-color: var(--body-color);
+    padding: 2rem 1.5rem 4rem;
+    box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.15);
+    transition: 0.3s;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .body {
+    margin: 0;
+  }
+
+  section {
+    padding: 6rem 0 2rem;
+  }
+  .section__subtitle {
+    margin-bottom: 4rem;
+  }
+
+  .header {
+    top: 0;
+    bottom: initial;
+  }
+
+  .header,
+  .main,
+  .footer__container {
+    padding: 0 1rem;
+  }
+
+  .nav {
+    height: calc(var(--header-height) + 1.5rem);
+    column-gap: 1rem;
+  }
+
+  .footer__socials {
+    display: flex;
+  }
+}
+
+/*==================== MEDIA QUERIES ====================*/
+/* For small devices */
+@media screen and (max-width: 426px) {
+  .container {
+    margin-left: var(--mb-1);
+    margin-right: var(--mb-1);
+  }
+  .nav {
+    height: calc(var(--header-height) + 1.5rem);
+    column-gap: 1rem;
+    grid-template-columns: 20px 2fr 1fr;
+  }
+
+  .nav__menu {
+    padding: 2rem 1rem 4rem;
+  }
+  .nav__list {
+    column-gap: 0;
+    margin-top: 1rem;
+  }
+  .footer {
+    width: 100%;
+  }
+  .footer__container {
+    grid-template-columns: 1fr;
+  }
+}
