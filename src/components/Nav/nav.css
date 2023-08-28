@@ -2,7 +2,7 @@
 .nav {
   max-width: 968px;
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
 }
 
@@ -169,4 +169,25 @@
 /* Change background header */
 .scroll-header {
   box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.15);
+}
+
+@media screen and (min-width: 768px) {
+  .nav {
+    grid-template-columns: 100px 1fr 1fr;
+  }
+  .nav__menu {
+    width: 100%;
+  }
+  .nav__icon,
+  .nav__close,
+  .nav__toggle {
+    display: none;
+  }
+  .nav__list {
+    display: flex;
+    column-gap: 2rem;
+  }
+  .change-theme {
+    margin: 0;
+  }
 }
