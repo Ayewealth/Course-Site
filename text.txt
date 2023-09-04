@@ -1,0 +1,80 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+
+function CreateCourse() {
+  const [title, setTitle] = useState('');
+  const [whatYouLearn, setWhatYouLearn] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('/api/courses/', {
+        title,
+        what_you_learn: whatYouLearn.split('\n'),
+        // ... other form data
+      });
+
+      if (response.status === 201) {
+        console.log('Course created successfully!');
+        // Reset form fields or show a success message
+      }
+    } catch (error) {
+      console.error('Error creating course:', error);
+      // Handle error, show error message, etc.
+    }
+  };
+
+  return (
+    <div>
+      <h2>Create New Course</h2>
+      <form onSubmit={handleSubmit}>
+        <label>Title:</label>
+        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+
+        <label>What You'll Learn:</label>
+        <textarea
+          value={whatYouLearn}
+          onChange={(e) => setWhatYouLearn(e.target.value)}
+        />
+
+        {/* ... other form fields */}
+        
+        <button type="submit">Create Course</button>
+      </form>
+    </div>
+  );
+}
+
+export default CreateCourse;
+
+
+List
+import React from 'react';
+
+const CourseDetails = ({ course }) => {
+    return (
+        <div>
+            <h1>{course.title}</h1>
+            <img src={course.imageURL} alt={course.title} />
+
+            <h2>What You'll Learn</h2>
+            <ul>
+                {course.get_what_you_learn_list().map((point, index) => (
+                    <li key={index}>{point}</li>
+                ))}
+            </ul>
+
+            <h2>Requirements</h2>
+            <ul>
+                {course.get_requirements_list().map((point, index) => (
+                    <li key={index}>{point}</li>
+                ))}
+            </ul>
+
+            {/* Add similar sections for other fields */}
+        </div>
+    );
+};
+
+export default CourseDetails;
