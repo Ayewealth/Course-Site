@@ -27,6 +27,7 @@ class UserSerializer(ModelSerializer):
         model = CustomUser
         fields = [
             'id',
+            'profile_pics',
             'name',
             'username',
             'email',
@@ -54,7 +55,6 @@ class UserProfileSerializer(ModelSerializer):
         model = StudentProfile
         fields = [
             'id',
-            'profile_pics',
             'user',
             'bio',
             'cart',
@@ -84,6 +84,7 @@ class InstructorSerializer(ModelSerializer):
         model = CustomUser
         fields = [
             'id',
+            'profile_pics',
             'name',
             'username',
             'email',
@@ -161,6 +162,7 @@ class CourseSerializer(ModelSerializer):
             'targeted_audience',
             'instructor',
             'category',
+            'topic',
             'price',
             'duration_in_hours',
             'students_purchased_count',

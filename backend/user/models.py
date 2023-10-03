@@ -23,6 +23,8 @@ class CustomUserManager(BaseUserManager):
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
+    profile_pics = models.ImageField(
+        default='default.png', upload_to='profile_pics')
     name = models.CharField(max_length=30, null=True, blank=True)
     username = models.CharField(max_length=30, null=True, blank=True)
     email = models.EmailField(unique=True)
@@ -43,8 +45,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 
 class InstructorProfile(models.Model):
-    profile_pics = models.ImageField(
-        default='default.png', upload_to='profile_pics')
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     bio = models.TextField(null=True, blank=True)
     bank_name = models.CharField(max_length=255, null=True, blank=True)
@@ -65,8 +65,6 @@ class InstructorProfile(models.Model):
 
 
 class StudentProfile(models.Model):
-    profile_pics = models.ImageField(
-        default='default.png', upload_to='profile_pics')
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     bio = models.TextField(null=True, blank=True)
 
@@ -81,13 +79,26 @@ class StudentProfile(models.Model):
             url = ''
         return url
 
-class Category(models.Model):
+class Parent(models.Model):
     name = models.CharField(max_length=255)
-    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
 
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+    parent = models.ForeignKey(Parent, null=True, blank=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+    
+class Topic(models.Model):
+    name = models.CharField(max_length=255)
+    category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+    
 class Course(models.Model):
     image = models.ImageField(null=True, blank=True)
     title = models.CharField(max_length=255)
@@ -96,6 +107,7 @@ class Course(models.Model):
     description = models.TextField(null=True, blank=True)
     targeted_audience = models.TextField(null=True, blank=True)
     instructor = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="courses")
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     price = models.DecimalField(max_digits=8, decimal_places=0)
     duration_in_hours = models.PositiveIntegerField()
